@@ -11,13 +11,7 @@
             }
             function get_github_user_from(user_id) {
                 fetch(`https://api.github.com/user/${user_id}`, {method: 'GET'})
-                    .then((response) => {
-                        if (response.ok) {
-                            response.json()
-                        } else {
-                            throw new Error(response.statusText);
-                        }
-                    })
+                    .then(response => response.json())
                     .then(data => {
                         window.location.href = data.html_url
                     })
