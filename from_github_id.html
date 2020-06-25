@@ -15,22 +15,22 @@
                         if (response.ok) {
                             response.json()
                         } else {
-                            window.location = window
-                                .location
-                                .toString()
-                                .replace(/\/+$/, '') + '/..'
+                            throw new Error(response.statusText);
                         }
                     })
                     .then(data => {
                         window.location.href = data.html_url
                     })
                     .catch((error) => {
-                        window.location = window
-                            .location
-                            .toString()
-                            .replace(/\/+$/, '') + '/..'
+                        console.log(error)
                     });
             }
         </script>
     </head>
+    <body>
+        <title>redirect</title>
+        <h3>redirect</h3>
+        <p>I guess you should have been directed somewhere,</p>
+        <p>please check the console log to check if an error (y'know, it could be anything) has occurred.</p>
+    </body>
 </html>
