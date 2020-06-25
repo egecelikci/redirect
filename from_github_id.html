@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script type="text/javascript" charset="utf-8">
+            if (document.location.hash) {
+                get_github_user_from(document.location.hash.match(/^#(.*?)$/)[1])
+            } else {
+                window.location = window
+                    .location
+                    .toString()
+                    .replace(/\/+$/, '') + '/..'
+            }
+            function get_github_user_from(user_id) {
+                fetch(`https://api.github.com/user/${user_id}`, {method: 'GET'})
+                    .then((response) => {
+                        if (response.ok) {
+                            response.json()
+                        } else {
+                            window.location = window
+                                .location
+                                .toString()
+                                .replace(/\/+$/, '') + '/..'
+                        }
+                    })
+                    .then(data => {
+                        window.location.href = data.html_url
+                    })
+                    .catch((error) => {
+                        window.location = window
+                            .location
+                            .toString()
+                            .replace(/\/+$/, '') + '/..'
+                    });
+            }
+        </script>
+    </head>
+</html>
